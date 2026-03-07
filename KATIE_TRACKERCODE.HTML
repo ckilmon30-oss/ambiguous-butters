@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -474,4 +475,482 @@
     render();
   </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Katie Tracker</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f2f2f7;
+      color: #111;
+    }
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    h1, h2 {
+      margin: 0 0 12px;
+    }
+    p {
+      margin: 0 0 10px;
+      color: #666;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin: 12px 0 6px;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 17px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid #d1d1d6;
+      background: #fff;
+    }
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+    .btn {
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+    .primary { background: #007aff; color: #fff; }
+    .secondary { background: #636366; color: #fff; }
+    .danger { background: #ff3b30; color: #fff; }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .choice-btn {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid #cfd6dd;
+      background: #f8f9fb;
+      text-align: center;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+    }
+    .choice-btn.active {
+      background: #007aff;
+      color: white;
+      border-color: #007aff;
+    }
+
+    .chip-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .chip {
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid #cfd6dd;
+      background: #f8f9fb;
+      font-size: 14px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .chip.active {
+      background: #007aff;
+      color: #fff;
+      border-color: #007aff;
+    }
+
+    .entry {
+      border-top: 1px solid #e8e8ed;
+      padding-top: 12px;
+      margin-top: 12px;
+    }
+    .small {
+      color: #666;
+      font-size: 13px;
+    }
+    .pill {
+      display: inline-block;
+      background: #eef4ff;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 12px;
+      margin: 4px 6px 0 0;
+    }
+
+    @media (max-width: 600px) {
+      .grid2, .choice-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Katie Tracker</h1>
+      <p>Simple headache and doctor visit log. Saves on this phone.</p>
+    </div>
+
+    <div class="card">
+      <h2>Headache / Migraine</h2>
+
+      <label>Date</label>
+      <input id="hDate" type="date">
+
+      <label>Type</label>
+      <div class="choice-grid">
+        <div class="choice-btn active" data-group="type" data-value="Migraine">Migraine</div>
+        <div class="choice-btn" data-group="type" data-value="Headache">Headache</div>
+      </div>
+
+      <label>Did you wake up with it?</label>
+      <div class="choice-grid">
+        <div class="choice-btn" data-group="wake" data-value="Yes">Yes</div>
+        <div class="choice-btn active" data-group="wake" data-value="No">No</div>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <label>Start time</label>
+          <input id="hStart" type="time">
+        </div>
+        <div>
+          <label>End time</label>
+          <input id="hEnd" type="time">
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <label>Severity (1–10)</label>
+          <input id="hSeverity" type="number" min="1" max="10" value="5">
+        </div>
+        <div>
+          <label>Main pain area</label>
+          <select id="hLocation">
+            <option>Temples</option>
+            <option>Behind eyes</option>
+            <option>Base of skull</option>
+            <option>Jaw / TMJ</option>
+            <option>Forehead</option>
+            <option>One side</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <label>Main symptoms</label>
+      <div class="chip-grid" id="symptomChips">
+        <div class="chip" data-value="Nausea">Nausea</div>
+        <div class="chip" data-value="Dizziness">Dizziness</div>
+        <div class="chip" data-value="Light sensitivity">Light sensitivity</div>
+        <div class="chip" data-value="Sound sensitivity">Sound sensitivity</div>
+        <div class="chip" data-value="Ringing in ears">Ringing in ears</div>
+        <div class="chip" data-value="Neck pain">Neck pain</div>
+        <div class="chip" data-value="Jaw pain">Jaw pain</div>
+      </div>
+
+      <label>Possible trigger</label>
+      <div class="chip-grid" id="triggerChips">
+        <div class="chip" data-value="Stress">Stress</div>
+        <div class="chip" data-value="Poor sleep">Poor sleep</div>
+        <div class="chip" data-value="Braces tightened">Braces tightened</div>
+        <div class="chip" data-value="Jaw clenching">Jaw clenching</div>
+        <div class="chip" data-value="Neck pain">Neck pain</div>
+        <div class="chip" data-value="Unknown">Unknown</div>
+      </div>
+
+      <label>Notes</label>
+      <textarea id="hNotes" placeholder="Anything important"></textarea>
+
+      <button class="btn primary" onclick="saveHeadache()">Save Headache Entry</button>
+    </div>
+
+    <div class="card">
+      <h2>Doctor Visit</h2>
+
+      <label>Date</label>
+      <input id="vDate" type="date">
+
+      <label>Type of doctor</label>
+      <select id="vType">
+        <option>Headache Neurologist</option>
+        <option>Neurologist</option>
+        <option>Primary Care</option>
+        <option>TMJ / Orofacial Pain</option>
+        <option>Pain Management</option>
+        <option>Sleep Specialist</option>
+        <option>ENT / Balance Specialist</option>
+        <option>Other</option>
+      </select>
+
+      <label>Doctor name</label>
+      <input id="vName" type="text" placeholder="Dr. Name">
+
+      <label>What changed?</label>
+      <div class="chip-grid" id="visitChangeChips">
+        <div class="chip" data-value="New medication">New medication</div>
+        <div class="chip" data-value="Dose change">Dose change</div>
+        <div class="chip" data-value="Testing ordered">Testing ordered</div>
+        <div class="chip" data-value="Follow-up planned">Follow-up planned</div>
+        <div class="chip" data-value="Referral made">Referral made</div>
+      </div>
+
+      <label>Visit notes</label>
+      <textarea id="vNotes" placeholder="What was discussed"></textarea>
+
+      <button class="btn primary" onclick="saveVisit()">Save Doctor Visit</button>
+    </div>
+
+    <div class="card">
+      <h2>Quick Summary</h2>
+      <div id="summary" class="small">No entries yet.</div>
+    </div>
+
+    <div class="card">
+      <div class="grid2">
+        <button class="btn secondary" onclick="downloadBackup()">Download Backup</button>
+        <button class="btn danger" onclick="clearAll()">Delete All</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Saved Headaches</h2>
+      <div id="headaches" class="small">No headache entries yet.</div>
+    </div>
+
+    <div class="card">
+      <h2>Saved Doctor Visits</h2>
+      <div id="visits" class="small">No doctor visits yet.</div>
+    </div>
+  </div>
+
+  <script>
+    const KEY = "katie_tracker_big_buttons_v1";
+
+    const state = {
+      type: "Migraine",
+      wake: "No"
+    };
+
+    function getData() {
+      return JSON.parse(localStorage.getItem(KEY)) || { headaches: [], visits: [] };
+    }
+
+    function setData(data) {
+      localStorage.setItem(KEY, JSON.stringify(data));
+    }
+
+    function durationText(start, end) {
+      if (!start || !end) return "Duration unknown";
+      const [sh, sm] = start.split(":").map(Number);
+      const [eh, em] = end.split(":").map(Number);
+      let s = sh * 60 + sm;
+      let e = eh * 60 + em;
+      if (e < s) e += 24 * 60;
+      const diff = e - s;
+      const h = Math.floor(diff / 60);
+      const m = diff % 60;
+      return `${h}h ${m}m`;
+    }
+
+    function esc(text) {
+      const div = document.createElement("div");
+      div.innerText = text || "";
+      return div.innerHTML;
+    }
+
+    function selectedChips(containerId) {
+      return [...document.querySelectorAll(`#${containerId} .chip.active`)]
+        .map(x => x.dataset.value);
+    }
+
+    function setupChoices() {
+      document.querySelectorAll(".choice-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const group = btn.dataset.group;
+          const value = btn.dataset.value;
+          document.querySelectorAll(`.choice-btn[data-group="${group}"]`).forEach(x => x.classList.remove("active"));
+          btn.classList.add("active");
+          state[group] = value;
+        });
+      });
+
+      document.querySelectorAll(".chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          chip.classList.toggle("active");
+        });
+      });
+    }
+
+    function saveHeadache() {
+      const date = document.getElementById("hDate").value;
+      if (!date) return alert("Please enter a date.");
+
+      const data = getData();
+      data.headaches.unshift({
+        id: Date.now(),
+        date,
+        type: state.type,
+        wake: state.wake,
+        start: document.getElementById("hStart").value,
+        end: document.getElementById("hEnd").value,
+        severity: document.getElementById("hSeverity").value,
+        location: document.getElementById("hLocation").value,
+        symptoms: selectedChips("symptomChips"),
+        triggers: selectedChips("triggerChips"),
+        notes: document.getElementById("hNotes").value.trim()
+      });
+      setData(data);
+      clearHeadacheForm();
+      render();
+    }
+
+    function saveVisit() {
+      const date = document.getElementById("vDate").value;
+      if (!date) return alert("Please enter a visit date.");
+
+      const data = getData();
+      data.visits.unshift({
+        id: Date.now(),
+        date,
+        type: document.getElementById("vType").value,
+        name: document.getElementById("vName").value.trim(),
+        changes: selectedChips("visitChangeChips"),
+        notes: document.getElementById("vNotes").value.trim()
+      });
+      setData(data);
+      clearVisitForm();
+      render();
+    }
+
+    function clearHeadacheForm() {
+      document.getElementById("hDate").value = "";
+      document.getElementById("hStart").value = "";
+      document.getElementById("hEnd").value = "";
+      document.getElementById("hSeverity").value = "5";
+      document.getElementById("hLocation").value = "Temples";
+      document.getElementById("hNotes").value = "";
+
+      state.type = "Migraine";
+      state.wake = "No";
+
+      document.querySelectorAll('.choice-btn[data-group="type"]').forEach(x => {
+        x.classList.toggle("active", x.dataset.value === "Migraine");
+      });
+      document.querySelectorAll('.choice-btn[data-group="wake"]').forEach(x => {
+        x.classList.toggle("active", x.dataset.value === "No");
+      });
+
+      document.querySelectorAll("#symptomChips .chip, #triggerChips .chip").forEach(x => x.classList.remove("active"));
+    }
+
+    function clearVisitForm() {
+      document.getElementById("vDate").value = "";
+      document.getElementById("vType").value = "Headache Neurologist";
+      document.getElementById("vName").value = "";
+      document.getElementById("vNotes").value = "";
+      document.querySelectorAll("#visitChangeChips .chip").forEach(x => x.classList.remove("active"));
+    }
+
+    function deleteHeadache(id) {
+      const data = getData();
+      data.headaches = data.headaches.filter(x => x.id !== id);
+      setData(data);
+      render();
+    }
+
+    function deleteVisit(id) {
+      const data = getData();
+      data.visits = data.visits.filter(x => x.id !== id);
+      setData(data);
+      render();
+    }
+
+    function clearAll() {
+      if (!confirm("Delete all entries?")) return;
+      localStorage.removeItem(KEY);
+      render();
+    }
+
+    function downloadBackup() {
+      const data = getData();
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "katie_tracker_backup.json";
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    function render() {
+      const data = getData();
+
+      document.getElementById("summary").innerHTML =
+        `<strong>${data.headaches.length}</strong> headache entries<br><strong>${data.visits.length}</strong> doctor visits`;
+
+      const headaches = document.getElementById("headaches");
+      if (!data.headaches.length) {
+        headaches.innerHTML = "No headache entries yet.";
+      } else {
+        headaches.innerHTML = data.headaches.map(x => `
+          <div class="entry">
+            <strong>${x.date}</strong> — ${esc(x.type)} — ${esc(x.severity)}/10<br>
+            <span class="small">${x.wake === "Yes" ? "Woke up with it" : "Did not wake up with it"} • ${durationText(x.start, x.end)}</span><br>
+            <span class="pill">${esc(x.location)}</span>
+            ${x.symptoms.map(s => `<span class="pill">${esc(s)}</span>`).join("")}
+            ${x.triggers.map(t => `<span class="pill">${esc(t)}</span>`).join("")}
+            ${x.notes ? `<div style="margin-top:8px;">${esc(x.notes)}</div>` : ""}
+            <button class="btn danger" onclick="deleteHeadache(${x.id})">Delete</button>
+          </div>
+        `).join("");
+      }
+
+      const visits = document.getElementById("visits");
+      if (!data.visits.length) {
+        visits.innerHTML = "No doctor visits yet.";
+      } else {
+        visits.innerHTML = data.visits.map(x => `
+          <div class="entry">
+            <strong>${x.date}</strong> — ${esc(x.type)}<br>
+            <span class="small">${x.name || "No doctor name entered"}</span><br>
+            ${x.changes.map(c => `<span class="pill">${esc(c)}</span>`).join("")}
+            ${x.notes ? `<div style="margin-top:8px;">${esc(x.notes)}</div>` : ""}
+            <button class="btn danger" onclick="deleteVisit(${x.id})">Delete</button>
+          </div>
+        `).join("");
+      }
+    }
+
+    setupChoices();
+    render();
+  </script>
+</body>
+>>>>>>> 6924704d5b8dfded22e719aead60f60aa459b8e5
 </html>
